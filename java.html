@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>Editor</title>
+	<style type="text/css" media="screen">
+	.ace_scroller {
+  		background-repeat: no-repeat;
+  		background-position: center
+	}
+	.ace_marker-layer {
+  		background-color: rgba( 0, 0, 0, 0.3 );
+		}
+	</style>
+</head>
+<body>
+    <b>Java</b>
+	<button id="download">保存</button>
+	<input type="file" id="file" name="file"/>
+    <button id="python">Python</button>
+    <button id="Java">Java</button>
+    <button id="c_cpp">C&C++</button>
+    <button id="html">HTML</button>
+    <button id="css">CSS</button>
+    <button id="javascript">JavaScript</button>
+    <button id="php">PHP</button>
+    <button id="ruby">Ruby</button>
+    <button id="swift">Swift</button>
+    <button id="sql">SQL</button>
+	<div id="editor" style="height: 600px"></div>
+	<script src="ace.js"></script>
+	<script src="ext-language_tools.js"></script>
+	<script>
+        window.jQuery = window.$ = require('./jquery.min.js');
+		var editor = ace.edit("editor");
+		editor.setTheme("ace/theme/monokai");
+		editor.setFontSize(14);
+		editor.getSession().setMode("ace/mode/java");
+		editor.getSession().setUseWrapMode(true);
+		editor.getSession().setTabSize(2);
+		editor.setOptions({
+    		enableBasicAutocompletion: true,
+    		enableSnippets: true,
+    		enableLiveAutocompletion: true
+    	});
+
+		var btn1 = document.getElementById('download');
+		btn1.addEventListener('click', function() {
+    		var content = editor.getValue();;
+    		let blob = new Blob([content]);
+    		let blobURL = window.URL.createObjectURL(blob);
+    		let a = document.createElement('a');
+    		a.href = blobURL;
+    		if (typeof aaresult === "undefined") {
+      			a.download="noname.java";
+    		} else {
+      			a.download = aaresult.name;
+    		}; 
+    		document.body.appendChild(a);
+    		a.click();
+    		a.parentNode.removeChild(a);
+		});
+
+        var btn2 = document.getElementById('python');
+        btn2.addEventListener('click', function() {
+            location.href = "index.html";
+        });
+
+        var btn3 = document.getElementById('Java');
+        btn3.addEventListener('click', function() {
+            location.href = "java.html";
+        });
+
+        var btn4 = document.getElementById('c_cpp');
+        btn4.addEventListener('click', function() {
+            location.href = "c_cpp.html";
+        });
+
+        var btn5 = document.getElementById('html');
+        btn5.addEventListener('click', function() {
+            location.href = "html.html";
+        });
+
+        var btn6 = document.getElementById('css');
+        btn6.addEventListener('click', function() {
+            location.href = "css.html";
+        });
+
+        var btn7 = document.getElementById('javascript');
+        btn7.addEventListener('click', function() {
+            location.href = "javascript.html";
+        });
+
+        var btn8 = document.getElementById('php');
+        btn8.addEventListener('click', function() {
+            location.href = "php.html";
+        });
+
+        var btn9 = document.getElementById('ruby');
+        btn9.addEventListener('click', function() {
+            location.href = "ruby.html";
+        });
+
+        var btn10 = document.getElementById('swift');
+        btn10.addEventListener('click', function() {
+            location.href = "swift.html";
+        });
+
+        var btn11 = document.getElementById('sql');
+        btn11.addEventListener('click', function() {
+            location.href = "sql.html";
+        });
+
+		var el2 = document.getElementById("file");
+		el2.addEventListener( 'change', function(e) {
+    		var result = e.target.files[0];
+    		aaresult=e.target.files[0];
+    		var reader = new FileReader();
+    		reader.readAsText( result );
+    		reader.addEventListener( 'load', function() {
+        		console.log(reader.result);
+        		editor.setValue(reader.result);    
+    		})
+ 
+		})
+
+		var imgchg = function(){
+    		var imageurl = "url(../../image.png)"
+    		$('.ace_scroller').css('background-image', imageurl);    
+  		} 
+  imgchg();
+
+	</script>
+</body>
+</html>
