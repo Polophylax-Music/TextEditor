@@ -1,0 +1,2 @@
+# TextEditor
+JavaScriptで作ったテキストエディタです。
